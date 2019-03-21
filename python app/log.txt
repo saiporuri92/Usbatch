@@ -1,0 +1,28 @@
+INFO:root:.......program execution started .....
+INFO:root:a,b values extered successfully
+DEBUG:root:before conversion a=12,b=3
+INFO:root:a value converted
+INFO:root:b value converted
+DEBUG:root:after conversion a=12.0,b=3.0
+INFO:root:result calculated well
+DEBUG:root:res=4.0
+INFO:root:.....program execution completed.....
+2019-03-21 22:18:32,920-->INFO-->.......program execution started .....
+2019-03-21 22:18:34,701-->INFO-->a,b values extered successfully
+2019-03-21 22:18:34,701-->DEBUG-->before conversion a=12,b=6
+2019-03-21 22:18:34,701-->INFO-->a value converted
+2019-03-21 22:18:34,701-->INFO-->b value converted
+2019-03-21 22:18:34,702-->DEBUG-->after conversion a=12.0,b=6.0
+2019-03-21 22:18:34,702-->INFO-->result calculated well
+2019-03-21 22:18:34,702-->DEBUG-->res=2.0
+2019-03-21 22:18:34,704-->INFO-->.....program execution completed.....
+2019-03-21 22:21:07,504-->ERROR-->float division by zero
+Traceback (most recent call last):
+  File "app1.py", line 17, in <module>
+    res=a/b
+ZeroDivisionError: float division by zero
+2019-03-21 22:21:16,561-->ERROR-->could not convert string to float: 'wer'
+Traceback (most recent call last):
+  File "app1.py", line 14, in <module>
+    b=float(b)
+ValueError: could not convert string to float: 'wer'
