@@ -1,0 +1,110 @@
+In [1]: from app1.models import Airport
+
+In [2]: shamshabad=Airport(name="shamshabad",lat="1234",log="5678")
+
+In [3]: shamshabad.save()
+
+In [4]: beg=Airport(name="begumpet", lat="24",log="23423")
+
+In [5]: beg.save()
+
+In [6]: airports = Airport.objects.all()
+
+In [7]: airports
+Out[7]: <QuerySet [<Airport: Airport object (1)>, <Airport: Airport object (2)>]>
+
+In [8]: airports[0]
+Out[8]: <Airport: Airport object (1)>
+
+In [9]: a1 = airports[0]
+
+In [10]: a1.name
+Out[10]: 'shamshabad'
+
+In [11]: a1.lat
+Out[11]: '1234'
+
+In [12]: a1,log
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-12-9aed9f42b7bd> in <module>()
+----> 1 a1,log
+
+NameError: name 'log' is not defined
+
+In [13]: a1.log
+Out[13]: '5678'
+
+In [14]: airports = Airport.objects.filter(name="begumpet")
+
+In [15]: airports
+Out[15]: <QuerySet [<Airport: Airport object (2)>]>
+
+In [16]: airports[0]
+Out[16]: <Airport: Airport object (2)>
+
+In [17]: airports = Airport.objects.all()
+
+In [18]: [(port.name,port.lat,port.log ) for port in airports]
+Out[18]: [('shamshabad', '1234', '5678'), ('begumpet', '24', '23423')]
+
+In [19]: airports = Airport.objects.get(name="begumpet")
+
+In [20]: port = Airport.objects.get(name="begumpet")
+
+In [21]: port
+Out[21]: <Airport: Airport object (2)>
+
+In [22]: port=Airport(name="begumpet", lat="234",log="3242343242")
+
+In [23]: port.save()
+
+In [24]: Airport.objects.filter(name="begumpet")
+Out[24]: <QuerySet [<Airport: Airport object (2)>, <Airport: Airport object (3)>]>
+
+In [25]: Airport.objects.get(name="begumpet")
+---------------------------------------------------------------------------
+MultipleObjectsReturned                   Traceback (most recent call last)
+<ipython-input-25-f30f5ae7c47c> in <module>()
+----> 1 Airport.objects.get(name="begumpet")
+
+~\Anaconda3\lib\site-packages\django\db\models\manager.py in manager_method(self, *args, **kwargs)
+     80         def create_method(name, method):
+     81             def manager_method(self, *args, **kwargs):
+---> 82                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     83             manager_method.__name__ = method.__name__
+     84             manager_method.__doc__ = method.__doc__
+
+~\Anaconda3\lib\site-packages\django\db\models\query.py in get(self, *args, **kwargs)
+    401         raise self.model.MultipleObjectsReturned(
+    402             "get() returned more than one %s -- it returned %s!" %
+--> 403             (self.model._meta.object_name, num)
+    404         )
+    405
+
+MultipleObjectsReturned: get() returned more than one Airport -- it returned 2!
+
+In [26]: Airport.objects.get(id=1)
+Out[26]: <Airport: Airport object (1)>
+
+In [27]: Airport.objects.get(id=2)
+Out[27]: <Airport: Airport object (2)>
+ port = Airport.objects.get(id=2)
+
+In [29]: port.lat
+Out[29]: '24'
+
+In [30]: port.name
+Out[30]: 'begumpet'
+
+In [31]: port.name="begumpet1234"
+
+In [32]: port.save()
+
+In [33]: port=Airport.objects.get(id=2)
+
+In [34]: port
+Out[34]: <Airport: Airport object (2)>
+
+In [35]: port.delete()
+Out[35]: (1, {'app1.Airport': 1})
