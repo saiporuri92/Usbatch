@@ -108,3 +108,336 @@ Out[34]: <Airport: Airport object (2)>
 
 In [35]: port.delete()
 Out[35]: (1, {'app1.Airport': 1})
+In [1]: from app1.models import Customer
+
+In [2]: sai=Customer(name="SAI laxmi")
+
+In [3]: sai.save()
+
+In [4]: jay=Customer(name="JAYARAM", address="Anjaneyanagar")
+
+In [5]: jay.save()
+
+In [6]: from app1.models import Category
+
+In [7]: cell = Category(name="cell")
+
+In [8]: cell.save()
+
+In [9]: lap=Category(name="lapptops")
+
+In [10]: lap.save()
+
+In [11]: from app1.models import Product
+
+In [12]: vivov5=Product(name="vivov5",cost=17000, discount=10,category=1)
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+<ipython-input-12-9141f6838e92> in <module>()
+----> 1 vivov5=Product(name="vivov5",cost=17000, discount=10,category=1)
+
+~\Anaconda3\lib\site-packages\django\db\models\base.py in __init__(self, *args, **kwargs)
+    465                 # checked) by the RelatedObjectDescriptor.
+    466                 if rel_obj is not _DEFERRED:
+--> 467                     _setattr(self, field.name, rel_obj)
+    468             else:
+    469                 if val is not _DEFERRED:
+
+~\Anaconda3\lib\site-packages\django\db\models\fields\related_descriptors.py in __set__(self, instance, value)
+    208                     instance._meta.object_name,
+    209                     self.field.name,
+--> 210                     self.field.remote_field.model._meta.object_name,
+    211                 )
+    212             )
+
+ValueError: Cannot assign "1": "Product.category" must be a "Category" instance.
+
+In [13]: cell_cat=Category.objects.get(pk=1)
+
+In [14]: cell_cat
+Out[14]: <Category: Category object (1)>
+
+In [15]: vivov5=Product(name="vivov5",cost=17000, discount=10,category=cell_cat)
+
+In [16]: vivov5.save()
+
+In [17]: from app1.models import Sales
+
+In [18]: cust1=Customer.objects.get(id=1)
+
+In [19]: products=Product.objects.all()
+
+In [20]: order1 = Sales(customer=cust1, description="this is order1")
+
+In [21]: order1.save()
+
+In [22]: products[0]
+Out[22]: <Product: Product object (1)>
+
+In [23]: order1.products.add(products[0])
+
+In [24]: order1.products.add(products[1])
+---------------------------------------------------------------------------
+IndexError                                Traceback (most recent call last)
+<ipython-input-24-795d4cdfe059> in <module>()
+----> 1 order1.products.add(products[1])
+
+~\Anaconda3\lib\site-packages\django\db\models\query.py in __getitem__(self, k)
+    301         qs.query.set_limits(k, k + 1)
+    302         qs._fetch_all()
+--> 303         return qs._result_cache[0]
+    304
+    305     def __and__(self, other):
+
+IndexError: list index out of range
+
+In [25]: lap1=Product(name="hp",cost=30000,discount=10,category=Category.objects.get(id=2))
+
+In [26]: lap1.save()
+
+In [27]: products=Product.objects.all()
+
+In [28]: order1.products.add(products[1])
+
+
+ orders =Sales.objects.all()
+
+In [38]: orders
+Out[38]: <QuerySet [<Sales: Sales object (1)>, <Sales: Sales object (2)>]>
+
+In [39]: orders[0]
+Out[39]: <Sales: Sales object (1)>
+
+In [40]: orders[0].description
+Out[40]: 'this is order1'
+
+In [41]: orders[0].customer
+Out[41]: <Customer: Customer object (1)>
+
+In [42]: orders[0].customer,name
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-42-61ad3834d91c> in <module>()
+----> 1 orders[0].customer,name
+
+NameError: name 'name' is not defined
+
+In [43]: orders[0].customer.namename
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-43-7f396d440f91> in <module>()
+----> 1 orders[0].customer.namename
+
+AttributeError: 'Customer' object has no attribute 'namename'
+
+In [44]: orders[0].customer.name
+Out[44]: 'SAI laxmi'
+
+In [45]: orders[0].customer.address
+
+In [46]: orders[0].products
+Out[46]: <django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager at 0x16621fd1160>
+
+In [47]: orders[0].products.all()
+Out[47]: <QuerySet [<Product: Product object (1)>, <Product: Product object (2)>]>
+
+In [48]: [product for i in orders[0].products.all()]
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-48-f9fd7ab066dd> in <module>()
+----> 1 [product for i in orders[0].products.all()]
+
+<ipython-input-48-f9fd7ab066dd> in <listcomp>(.0)
+----> 1 [product for i in orders[0].products.all()]
+
+NameError: name 'product' is not defined
+
+In [49]: [product for product in orders[0].products.all()]
+Out[49]: [<Product: Product object (1)>, <Product: Product object (2)>]
+
+In [50]: [product.__dict__ for product in orders[0].products.all()]
+Out[50]:
+[{'_state': <django.db.models.base.ModelState at 0x1662201da20>,
+  'id': 1,
+  'name': 'vivov5',
+  'cost': 17000,
+  'discount': 10,
+  'category_id': 1},
+ {'_state': <django.db.models.base.ModelState at 0x1662201db00>,
+  'id': 2,
+  'name': 'hp',
+  'cost': 30000,
+  'discount': 10,
+  'category_id': 2}]
+
+[49]: [product for product in orders[0].products.all()]
+Out[49]: [<Product: Product object (1)>, <Product: Product object (2)>]
+
+In [50]: [product.__dict__ for product in orders[0].products.all()]
+Out[50]:
+[{'_state': <django.db.models.base.ModelState at 0x1662201da20>,
+  'id': 1,
+  'name': 'vivov5',
+  'cost': 17000,
+  'discount': 10,
+  'category_id': 1},
+ {'_state': <django.db.models.base.ModelState at 0x1662201db00>,
+  'id': 2,
+  'name': 'hp',
+  'cost': 30000,
+  'discount': 10,
+  'category_id': 2}]
+
+In [51]: quit()
+
+D:\USbatch1\project\shorttestpath>python manage.py shell
+Python 3.7.0 (default, Jun 28 2018, 08:04:48) [MSC v.1912 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 6.5.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from app1.serializers import SalesSerializer
+
+In [2]: ord1=SalesSerializer(data={"customer":1, "description":"order3","products":[1,2]})
+
+In [3]: ord1.save()
+---------------------------------------------------------------------------
+AssertionError                            Traceback (most recent call last)
+<ipython-input-3-709006728156> in <module>()
+----> 1 ord1.save()
+
+~\Anaconda3\lib\site-packages\rest_framework\serializers.py in save(self, **kwargs)
+    178
+    179         assert hasattr(self, '_errors'), (
+--> 180             'You must call `.is_valid()` before calling `.save()`.'
+    181         )
+    182
+
+AssertionError: You must call `.is_valid()` before calling `.save()`.
+
+In [4]: ord1.is_valid()
+Out[4]: True
+
+In [5]: ord1.save()
+Out[5]: <Sales: Sales object (3)>
+
+In [6]: ord1=SalesSerializer(data={"customer":20, "description":"order3","products":[1,2]})
+
+In [7]: ord1.is_valid()
+Out[7]: False
+
+In [8]: ord1._errors
+Out[8]: {'customer': [ErrorDetail(string='Invalid pk "20" - object does not exist.', code='does_not_exist')]}
+
+In [9]: ord1=SalesSerializer(data={"customer":20, "description":"order3","products":[10,20]})
+
+In [10]: ord1.is_valid()
+Out[10]: False
+
+In [11]: ord1._errors
+Out[11]:
+{'customer': [ErrorDetail(string='Invalid pk "20" - object does not exist.', code='does_not_exist')],
+ 'products': [ErrorDetail(string='Invalid pk "10" - object does not exist.', code='does_not_exist')]}
+
+In [12]: quit()
+
+D:\USbatch1\project\shorttestpath>python manage.py shell
+Python 3.7.0 (default, Jun 28 2018, 08:04:48) [MSC v.1912 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 6.5.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from app1.serializers import SalesSerializer
+
+In [2]: ord1=SalesSerializer(data={"customer":20, "description":"order3@#%","products":[10,20]})
+
+In [3]: ord1.is_valid()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-3-5a79fb5840ec> in <module>()
+----> 1 ord1.is_valid()
+
+~\Anaconda3\lib\site-packages\rest_framework\serializers.py in is_valid(self, raise_exception)
+    234         if not hasattr(self, '_validated_data'):
+    235             try:
+--> 236                 self._validated_data = self.run_validation(self.initial_data)
+    237             except ValidationError as exc:
+    238                 self._validated_data = {}
+
+~\Anaconda3\lib\site-packages\rest_framework\serializers.py in run_validation(self, data)
+    432             return data
+    433
+--> 434         value = self.to_internal_value(data)
+    435         try:
+    436             self.run_validators(value)
+
+~\Anaconda3\lib\site-packages\rest_framework\serializers.py in to_internal_value(self, data)
+    488                 validated_value = field.run_validation(primitive_value)
+    489                 if validate_method is not None:
+--> 490                     validated_value = validate_method(validated_value)
+    491             except ValidationError as exc:
+    492                 errors[field.field_name] = exc.detail
+
+D:\USbatch1\project\shorttestpath\app1\serializers.py in validate_description(self, value)
+      7         def validate_description(self,value):
+      8                 if not value.isalnum():
+----> 9                         raise serializers.ValidationError("exepcting alphanumeric")
+     10                 return value
+     11
+
+NameError: name 'serializers' is not defined
+
+In [4]: ord1.is_valid()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-4-5a79fb5840ec> in <module>()
+----> 1 ord1.is_valid()
+
+~\Anaconda3\lib\site-packages\rest_framework\serializers.py in is_valid(self, raise_exception)
+    234         if not hasattr(self, '_validated_data'):
+    235             try:
+--> 236                 self._validated_data = self.run_validation(self.initial_data)
+    237             except ValidationError as exc:
+    238                 self._validated_data = {}
+
+~\Anaconda3\lib\site-packages\rest_framework\serializers.py in run_validation(self, data)
+    432             return data
+    433
+--> 434         value = self.to_internal_value(data)
+    435         try:
+    436             self.run_validators(value)
+
+~\Anaconda3\lib\site-packages\rest_framework\serializers.py in to_internal_value(self, data)
+    488                 validated_value = field.run_validation(primitive_value)
+    489                 if validate_method is not None:
+--> 490                     validated_value = validate_method(validated_value)
+    491             except ValidationError as exc:
+    492                 errors[field.field_name] = exc.detail
+
+D:\USbatch1\project\shorttestpath\app1\serializers.py in validate_description(self, value)
+      7                 fields = ['customer',"description","products"]#"__all__"
+      8         def validate_description(self,value):
+----> 9                 if not value.isalnum():
+     10                         raise serializers.ValidationError("exepcting alphanumeric")
+     11                 return value
+
+NameError: name 'serializers' is not defined
+
+In [5]: quit()
+
+D:\USbatch1\project\shorttestpath>python manage.py shell
+Python 3.7.0 (default, Jun 28 2018, 08:04:48) [MSC v.1912 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 6.5.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from app1.serializers import SalesSerializer
+
+In [2]: ord1=SalesSerializer(data={"customer":20, "description":"order3@#%","products":[10,20]})
+
+In [3]: ord1.is_valid()
+Out[3]: False
+
+In [4]: ord1._errors
+Out[4]:
+{'customer': [ErrorDetail(string='Invalid pk "20" - object does not exist.', code='does_not_exist')],
+ 'description': [ErrorDetail(string='exepcting alphanumeric', code='invalid')],
+ 'products': [ErrorDetail(string='Invalid pk "10" - object does not exist.', code='does_not_exist')]}
+
