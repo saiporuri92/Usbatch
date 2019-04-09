@@ -4,6 +4,7 @@ from app1.models import Airport
 import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from app1.serializers import AirportSerializer
 
 # Create your views here.
 '''
@@ -13,9 +14,14 @@ def airports(req):
 	return HttpResponse(json.dumps(data))
 '''
 class AirportView(APIView):
+	authentication_classes=[]
+	permission_classes=[]
 	def get(self,request,pk=None,format=None):
 		ports = Airport.objects.all()
-		data = [(port.name,port.lat,port.log) for port in ports]
+		#data = [(port.name,port.lat,port.log) for port in ports]
+		ser=AirportSerializer(data=ports, many=True)
+		ser.is_valid()
+		data=ser.data
 		return Response(data)
 	def put(self,request,pk,format=None):
 		port = Airport.objects.get(id=pk)
