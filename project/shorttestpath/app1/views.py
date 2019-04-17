@@ -13,6 +13,16 @@ def airports(req):
 	data = [(port.name,port.lat,port.log) for port in ports]
 	return HttpResponse(json.dumps(data))
 '''
+class Shorttestpath(APIView):
+	def get(self, request):
+		data = request.data
+		airports = data.get("airports")
+		source_airport = data.get("source")
+		# get the lat, log of each airport
+		# calculate the distances
+		#find the shortest path
+		# write a business logic
+		return Response("begumpet->vizag->shamshabad->begumpet")
 class AirportView(APIView):
 	authentication_classes=[]
 	permission_classes=[]

@@ -1,0 +1,513 @@
+docker pull ubuntu
+docker images
+docker ps --> running containers
+docker run -it ubuntu bash
+docker run -it -d ubuntu
+
+docker exec -it 4e34b9caa35b bin/bash --> go inside the container
+
+execute the below commands inside the continaer.
+apt-get update
+apt-get -y install nginx
+
+service nginx start
+
+come out of the container by type exit.
+
+docker commit id new_imagename
+
+
+
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+Digest: sha256:017eef0b616011647b269b5c65826e2e2ebddbe5d1f8c1e56b3599fb14fabec8
+Status: Image is up to date for ubuntu:latest
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker run -it -d ubuntu
+cafa6cf85c014a1405eed5efd3e953b453fdcabc7057657ed4f660c63b3e723a
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker sp
+docker: 'sp' is not a docker command.
+See 'docker --help'
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+cafa6cf85c01        ubuntu              "/bin/bash"         8 seconds ago       Up 6 seconds                            blissful_feynman
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker exec -it cafa6cf85c01 bin/bash
+root@cafa6cf85c01:/# apt-get update
+Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+Get:2 http://archive.ubuntu.com/ubuntu bionic InRelease [242 kB]
+Get:3 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+Get:4 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [4171 B]
+Get:5 http://archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
+Get:6 http://security.ubuntu.com/ubuntu bionic-security/restricted amd64 Packages [5436 B]
+Get:7 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [410 kB]
+Get:8 http://archive.ubuntu.com/ubuntu bionic/main amd64 Packages [1344 kB]
+Get:9 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [301 kB]
+Get:10 http://archive.ubuntu.com/ubuntu bionic/restricted amd64 Packages [13.5 kB]
+Get:11 http://archive.ubuntu.com/ubuntu bionic/multiverse amd64 Packages [186 kB]
+Get:12 http://archive.ubuntu.com/ubuntu bionic/universe amd64 Packages [11.3 MB]
+Get:13 http://archive.ubuntu.com/ubuntu bionic-updates/universe amd64 Packages [1103 kB]
+Get:14 http://archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 Packages [7238 B]
+Get:15 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages [752 kB]
+Get:16 http://archive.ubuntu.com/ubuntu bionic-updates/restricted amd64 Packages [10.8 kB]
+Get:17 http://archive.ubuntu.com/ubuntu bionic-backports/universe amd64 Packages [3659 B]
+Get:18 http://archive.ubuntu.com/ubuntu bionic-backports/main amd64 Packages [942 B]
+Fetched 16.0 MB in 38s (419 kB/s)
+Reading package lists... 92%
+Reading package lists... Done
+
+root@cafa6cf85c01:/#
+root@cafa6cf85c01:/#
+root@cafa6cf85c01:/#
+root@cafa6cf85c01:/#
+root@cafa6cf85c01:/#
+root@cafa6cf85c01:/#
+root@cafa6cf85c01:/# exit
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              latest              94e814e2efa8        5 weeks ago         88.9MB
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+Digest: sha256:017eef0b616011647b269b5c65826e2e2ebddbe5d1f8c1e56b3599fb14fabec8
+Status: Image is up to date for ubuntu:latest
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker pull ubuntu:14.10
+14.10: Pulling from library/ubuntu
+b0efe5c05b4c: Pull complete
+0a1f1b169319: Pull complete
+1ceb0a3c7c48: Pull complete
+a3ed95caeb02: Pull complete
+Digest: sha256:6341c688b4b0b82ec735389b3c97df8cf2831b8cb8bd1856779130a86574ac5c
+Status: Downloaded newer image for ubuntu:14.10
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+Digest: sha256:017eef0b616011647b269b5c65826e2e2ebddbe5d1f8c1e56b3599fb14fabec8
+Status: Image is up to date for ubuntu:latest
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              latest              94e814e2efa8        5 weeks ago         88.9MB
+ubuntu              14.10               a8a2ba3ce1a3        3 years ago         194MB
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+cafa6cf85c01        ubuntu              "/bin/bash"         15 minutes ago      Up 14 minutes                           blissful_feynman
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker container kill cafa6cf85c01
+cafa6cf85c01
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker run -it ubuntu bash
+root@a9e281b723ab:/#
+root@a9e281b723ab:/#
+root@a9e281b723ab:/# exit
+exit
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker run -it -d ubuntu bash
+4e34b9caa35b496eec8cf1b333953ec407147de4c120e24ebd0089e7ac7a70af
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docke rps
+bash: docke: command not found
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+4e34b9caa35b        ubuntu              "bash"              10 seconds ago      Up 8 seconds                            adoring_babbage
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker exec -it 4e34b9caa35b bash
+root@4e34b9caa35b:/# apt-get update
+Get:1 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+Get:2 http://archive.ubuntu.com/ubuntu bionic InRelease [242 kB]
+Get:3 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [410 kB]
+Get:4 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+Get:5 http://archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
+Get:6 http://archive.ubuntu.com/ubuntu bionic/universe amd64 Packages [11.3 MB]
+Get:7 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [4171 B]
+Get:8 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [301 kB]
+Get:9 http://security.ubuntu.com/ubuntu bionic-security/restricted amd64 Packages [5436 B]
+Get:10 http://archive.ubuntu.com/ubuntu bionic/multiverse amd64 Packages [186 kB]
+Get:11 http://archive.ubuntu.com/ubuntu bionic/restricted amd64 Packages [13.5 kB]
+Get:12 http://archive.ubuntu.com/ubuntu bionic/main amd64 Packages [1344 kB]
+Get:13 http://archive.ubuntu.com/ubuntu bionic-updates/universe amd64 Packages [1103 kB]
+Get:14 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages [752 kB]
+Get:15 http://archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 Packages [7238 B]
+Get:16 http://archive.ubuntu.com/ubuntu bionic-updates/restricted amd64 Packages [10.8 kB]
+Get:17 http://archive.ubuntu.com/ubuntu bionic-backports/main amd64 Packages [942 B]
+Get:18 http://archive.ubuntu.com/ubuntu bionic-backports/universe amd64 Packages [3659 B]
+Fetched 16.0 MB in 7s (2295 kB/s)
+Reading package lists... Done
+root@4e34b9caa35b:/# apt-get -y install nginx
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  fontconfig-config fonts-dejavu-core geoip-database iproute2 libatm1 libbsd0 libelf1 libexpat1 libfontconfig1 libfreetype6 libgd3 libgeoip1 libicu60 libjbig0
+  libjpeg-turbo8 libjpeg8 libmnl0 libnginx-mod-http-geoip libnginx-mod-http-image-filter libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream
+  libpng16-16 libssl1.1 libtiff5 libwebp6 libx11-6 libx11-data libxau6 libxcb1 libxdmcp6 libxml2 libxpm4 libxslt1.1 libxtables12 multiarch-support nginx-common
+  nginx-core ucf
+Suggested packages:
+  iproute2-doc libgd-tools geoip-bin fcgiwrap nginx-doc ssl-cert
+The following NEW packages will be installed:
+  fontconfig-config fonts-dejavu-core geoip-database iproute2 libatm1 libbsd0 libelf1 libexpat1 libfontconfig1 libfreetype6 libgd3 libgeoip1 libicu60 libjbig0
+  libjpeg-turbo8 libjpeg8 libmnl0 libnginx-mod-http-geoip libnginx-mod-http-image-filter libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream
+  libpng16-16 libssl1.1 libtiff5 libwebp6 libx11-6 libx11-data libxau6 libxcb1 libxdmcp6 libxml2 libxpm4 libxslt1.1 libxtables12 multiarch-support nginx nginx-common
+  nginx-core ucf
+0 upgraded, 40 newly installed, 0 to remove and 6 not upgraded.
+Need to get 16.9 MB of archives.
+After this operation, 61.4 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu bionic/main amd64 multiarch-support amd64 2.27-3ubuntu1 [6916 B]
+Get:2 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxau6 amd64 1:1.0.8-1 [8376 B]
+Get:3 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libjpeg-turbo8 amd64 1.5.2-0ubuntu5.18.04.1 [110 kB]
+Get:4 http://archive.ubuntu.com/ubuntu bionic/main amd64 libelf1 amd64 0.170-0.4 [44.1 kB]
+Get:5 http://archive.ubuntu.com/ubuntu bionic/main amd64 libmnl0 amd64 1.0.4-2 [12.3 kB]
+Get:6 http://archive.ubuntu.com/ubuntu bionic/main amd64 iproute2 amd64 4.15.0-2ubuntu1 [721 kB]
+Get:7 http://archive.ubuntu.com/ubuntu bionic/main amd64 libatm1 amd64 1:2.5.1-2build1 [21.9 kB]
+Get:8 http://archive.ubuntu.com/ubuntu bionic/main amd64 libbsd0 amd64 0.8.7-1 [41.5 kB]
+Get:9 http://archive.ubuntu.com/ubuntu bionic/main amd64 libexpat1 amd64 2.2.5-3 [80.2 kB]
+Get:10 http://archive.ubuntu.com/ubuntu bionic/main amd64 libicu60 amd64 60.2-3ubuntu3 [8054 kB]
+Get:11 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libssl1.1 amd64 1.1.0g-2ubuntu4.3 [1130 kB]
+Get:12 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxml2 amd64 2.9.4+dfsg1-6.1ubuntu1.2 [663 kB]
+Get:13 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxtables12 amd64 1.6.1-2ubuntu2 [27.9 kB]
+Get:14 http://archive.ubuntu.com/ubuntu bionic/main amd64 ucf all 3.0038 [50.5 kB]
+Get:15 http://archive.ubuntu.com/ubuntu bionic/main amd64 geoip-database all 20180315-1 [2090 kB]
+Get:16 http://archive.ubuntu.com/ubuntu bionic/main amd64 libgeoip1 amd64 1.6.12-1 [71.8 kB]
+Get:17 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libpng16-16 amd64 1.6.34-1ubuntu0.18.04.1 [176 kB]
+Get:18 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxdmcp6 amd64 1:1.1.2-3 [10.7 kB]
+Get:19 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxcb1 amd64 1.13-2~ubuntu18.04 [45.5 kB]
+Get:20 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libx11-data all 2:1.6.4-3ubuntu0.2 [113 kB]
+Get:21 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libx11-6 amd64 2:1.6.4-3ubuntu0.2 [569 kB]
+Get:22 http://archive.ubuntu.com/ubuntu bionic/main amd64 fonts-dejavu-core all 2.37-1 [1041 kB]
+Get:23 http://archive.ubuntu.com/ubuntu bionic/main amd64 fontconfig-config all 2.12.6-0ubuntu2 [55.8 kB]
+Get:24 http://archive.ubuntu.com/ubuntu bionic/main amd64 libfreetype6 amd64 2.8.1-2ubuntu2 [335 kB]
+Get:25 http://archive.ubuntu.com/ubuntu bionic/main amd64 libfontconfig1 amd64 2.12.6-0ubuntu2 [137 kB]
+Get:26 http://archive.ubuntu.com/ubuntu bionic/main amd64 libjpeg8 amd64 8c-2ubuntu8 [2194 B]
+Get:27 http://archive.ubuntu.com/ubuntu bionic/main amd64 libjbig0 amd64 2.1-3.1build1 [26.7 kB]
+Get:28 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libtiff5 amd64 4.0.9-5ubuntu0.2 [153 kB]
+Get:29 http://archive.ubuntu.com/ubuntu bionic/main amd64 libwebp6 amd64 0.6.1-2 [185 kB]
+Get:30 http://archive.ubuntu.com/ubuntu bionic/main amd64 libxpm4 amd64 1:3.5.12-1 [34.0 kB]
+Get:31 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libgd3 amd64 2.2.5-4ubuntu0.3 [119 kB]
+Get:32 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 nginx-common all 1.14.0-0ubuntu1.2 [37.4 kB]
+Get:33 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnginx-mod-http-geoip amd64 1.14.0-0ubuntu1.2 [11.2 kB]
+Get:34 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnginx-mod-http-image-filter amd64 1.14.0-0ubuntu1.2 [14.5 kB]
+Get:35 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libxslt1.1 amd64 1.1.29-5ubuntu0.1 [150 kB]
+Get:36 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnginx-mod-http-xslt-filter amd64 1.14.0-0ubuntu1.2 [13.0 kB]
+Get:37 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnginx-mod-mail amd64 1.14.0-0ubuntu1.2 [41.8 kB]
+Get:38 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libnginx-mod-stream amd64 1.14.0-0ubuntu1.2 [63.6 kB]
+Get:39 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 nginx-core amd64 1.14.0-0ubuntu1.2 [413 kB]
+Get:40 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 nginx all 1.14.0-0ubuntu1.2 [3596 B]
+Fetched 16.9 MB in 41s (409 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package multiarch-support.
+(Reading database ... 4039 files and directories currently installed.)
+Preparing to unpack .../multiarch-support_2.27-3ubuntu1_amd64.deb ...
+Unpacking multiarch-support (2.27-3ubuntu1) ...
+Setting up multiarch-support (2.27-3ubuntu1) ...
+Selecting previously unselected package libxau6:amd64.
+(Reading database ... 4042 files and directories currently installed.)
+Preparing to unpack .../00-libxau6_1%3a1.0.8-1_amd64.deb ...
+Unpacking libxau6:amd64 (1:1.0.8-1) ...
+Selecting previously unselected package libjpeg-turbo8:amd64.
+Preparing to unpack .../01-libjpeg-turbo8_1.5.2-0ubuntu5.18.04.1_amd64.deb ...
+Unpacking libjpeg-turbo8:amd64 (1.5.2-0ubuntu5.18.04.1) ...
+Selecting previously unselected package libelf1:amd64.
+Preparing to unpack .../02-libelf1_0.170-0.4_amd64.deb ...
+Unpacking libelf1:amd64 (0.170-0.4) ...
+Selecting previously unselected package libmnl0:amd64.
+Preparing to unpack .../03-libmnl0_1.0.4-2_amd64.deb ...
+Unpacking libmnl0:amd64 (1.0.4-2) ...
+Selecting previously unselected package iproute2.
+Preparing to unpack .../04-iproute2_4.15.0-2ubuntu1_amd64.deb ...
+Unpacking iproute2 (4.15.0-2ubuntu1) ...
+Selecting previously unselected package libatm1:amd64.
+Preparing to unpack .../05-libatm1_1%3a2.5.1-2build1_amd64.deb ...
+Unpacking libatm1:amd64 (1:2.5.1-2build1) ...
+Selecting previously unselected package libbsd0:amd64.
+Preparing to unpack .../06-libbsd0_0.8.7-1_amd64.deb ...
+Unpacking libbsd0:amd64 (0.8.7-1) ...
+Selecting previously unselected package libexpat1:amd64.
+Preparing to unpack .../07-libexpat1_2.2.5-3_amd64.deb ...
+Unpacking libexpat1:amd64 (2.2.5-3) ...
+Selecting previously unselected package libicu60:amd64.
+Preparing to unpack .../08-libicu60_60.2-3ubuntu3_amd64.deb ...
+Unpacking libicu60:amd64 (60.2-3ubuntu3) ...
+Selecting previously unselected package libssl1.1:amd64.
+Preparing to unpack .../09-libssl1.1_1.1.0g-2ubuntu4.3_amd64.deb ...
+Unpacking libssl1.1:amd64 (1.1.0g-2ubuntu4.3) ...
+Selecting previously unselected package libxml2:amd64.
+Preparing to unpack .../10-libxml2_2.9.4+dfsg1-6.1ubuntu1.2_amd64.deb ...
+Unpacking libxml2:amd64 (2.9.4+dfsg1-6.1ubuntu1.2) ...
+Selecting previously unselected package libxtables12:amd64.
+Preparing to unpack .../11-libxtables12_1.6.1-2ubuntu2_amd64.deb ...
+Unpacking libxtables12:amd64 (1.6.1-2ubuntu2) ...
+Selecting previously unselected package ucf.
+Preparing to unpack .../12-ucf_3.0038_all.deb ...
+Moving old data out of the way
+Unpacking ucf (3.0038) ...
+Selecting previously unselected package geoip-database.
+Preparing to unpack .../13-geoip-database_20180315-1_all.deb ...
+Unpacking geoip-database (20180315-1) ...
+Selecting previously unselected package libgeoip1:amd64.
+Preparing to unpack .../14-libgeoip1_1.6.12-1_amd64.deb ...
+Unpacking libgeoip1:amd64 (1.6.12-1) ...
+Selecting previously unselected package libpng16-16:amd64.
+Preparing to unpack .../15-libpng16-16_1.6.34-1ubuntu0.18.04.1_amd64.deb ...
+Unpacking libpng16-16:amd64 (1.6.34-1ubuntu0.18.04.1) ...
+Selecting previously unselected package libxdmcp6:amd64.
+Preparing to unpack .../16-libxdmcp6_1%3a1.1.2-3_amd64.deb ...
+Unpacking libxdmcp6:amd64 (1:1.1.2-3) ...
+Selecting previously unselected package libxcb1:amd64.
+Preparing to unpack .../17-libxcb1_1.13-2~ubuntu18.04_amd64.deb ...
+Unpacking libxcb1:amd64 (1.13-2~ubuntu18.04) ...
+Selecting previously unselected package libx11-data.
+Preparing to unpack .../18-libx11-data_2%3a1.6.4-3ubuntu0.2_all.deb ...
+Unpacking libx11-data (2:1.6.4-3ubuntu0.2) ...
+Selecting previously unselected package libx11-6:amd64.
+Preparing to unpack .../19-libx11-6_2%3a1.6.4-3ubuntu0.2_amd64.deb ...
+Unpacking libx11-6:amd64 (2:1.6.4-3ubuntu0.2) ...
+Selecting previously unselected package fonts-dejavu-core.
+Preparing to unpack .../20-fonts-dejavu-core_2.37-1_all.deb ...
+Unpacking fonts-dejavu-core (2.37-1) ...
+Selecting previously unselected package fontconfig-config.
+Preparing to unpack .../21-fontconfig-config_2.12.6-0ubuntu2_all.deb ...
+Unpacking fontconfig-config (2.12.6-0ubuntu2) ...
+Selecting previously unselected package libfreetype6:amd64.
+Preparing to unpack .../22-libfreetype6_2.8.1-2ubuntu2_amd64.deb ...
+Unpacking libfreetype6:amd64 (2.8.1-2ubuntu2) ...
+Selecting previously unselected package libfontconfig1:amd64.
+Preparing to unpack .../23-libfontconfig1_2.12.6-0ubuntu2_amd64.deb ...
+Unpacking libfontconfig1:amd64 (2.12.6-0ubuntu2) ...
+Selecting previously unselected package libjpeg8:amd64.
+Preparing to unpack .../24-libjpeg8_8c-2ubuntu8_amd64.deb ...
+Unpacking libjpeg8:amd64 (8c-2ubuntu8) ...
+Selecting previously unselected package libjbig0:amd64.
+Preparing to unpack .../25-libjbig0_2.1-3.1build1_amd64.deb ...
+Unpacking libjbig0:amd64 (2.1-3.1build1) ...
+Selecting previously unselected package libtiff5:amd64.
+Preparing to unpack .../26-libtiff5_4.0.9-5ubuntu0.2_amd64.deb ...
+Unpacking libtiff5:amd64 (4.0.9-5ubuntu0.2) ...
+Selecting previously unselected package libwebp6:amd64.
+Preparing to unpack .../27-libwebp6_0.6.1-2_amd64.deb ...
+Unpacking libwebp6:amd64 (0.6.1-2) ...
+Selecting previously unselected package libxpm4:amd64.
+Preparing to unpack .../28-libxpm4_1%3a3.5.12-1_amd64.deb ...
+Unpacking libxpm4:amd64 (1:3.5.12-1) ...
+Selecting previously unselected package libgd3:amd64.
+Preparing to unpack .../29-libgd3_2.2.5-4ubuntu0.3_amd64.deb ...
+Unpacking libgd3:amd64 (2.2.5-4ubuntu0.3) ...
+Selecting previously unselected package nginx-common.
+Preparing to unpack .../30-nginx-common_1.14.0-0ubuntu1.2_all.deb ...
+Unpacking nginx-common (1.14.0-0ubuntu1.2) ...
+Selecting previously unselected package libnginx-mod-http-geoip.
+Preparing to unpack .../31-libnginx-mod-http-geoip_1.14.0-0ubuntu1.2_amd64.deb ...
+Unpacking libnginx-mod-http-geoip (1.14.0-0ubuntu1.2) ...
+Selecting previously unselected package libnginx-mod-http-image-filter.
+Preparing to unpack .../32-libnginx-mod-http-image-filter_1.14.0-0ubuntu1.2_amd64.deb ...
+Unpacking libnginx-mod-http-image-filter (1.14.0-0ubuntu1.2) ...
+Selecting previously unselected package libxslt1.1:amd64.
+Preparing to unpack .../33-libxslt1.1_1.1.29-5ubuntu0.1_amd64.deb ...
+Unpacking libxslt1.1:amd64 (1.1.29-5ubuntu0.1) ...
+Selecting previously unselected package libnginx-mod-http-xslt-filter.
+Preparing to unpack .../34-libnginx-mod-http-xslt-filter_1.14.0-0ubuntu1.2_amd64.deb ...
+Unpacking libnginx-mod-http-xslt-filter (1.14.0-0ubuntu1.2) ...
+Selecting previously unselected package libnginx-mod-mail.
+Preparing to unpack .../35-libnginx-mod-mail_1.14.0-0ubuntu1.2_amd64.deb ...
+Unpacking libnginx-mod-mail (1.14.0-0ubuntu1.2) ...
+Selecting previously unselected package libnginx-mod-stream.
+Preparing to unpack .../36-libnginx-mod-stream_1.14.0-0ubuntu1.2_amd64.deb ...
+Unpacking libnginx-mod-stream (1.14.0-0ubuntu1.2) ...
+Selecting previously unselected package nginx-core.
+Preparing to unpack .../37-nginx-core_1.14.0-0ubuntu1.2_amd64.deb ...
+Unpacking nginx-core (1.14.0-0ubuntu1.2) ...
+Selecting previously unselected package nginx.
+Preparing to unpack .../38-nginx_1.14.0-0ubuntu1.2_all.deb ...
+Unpacking nginx (1.14.0-0ubuntu1.2) ...
+Setting up libexpat1:amd64 (2.2.5-3) ...
+Setting up libicu60:amd64 (60.2-3ubuntu3) ...
+Setting up geoip-database (20180315-1) ...
+Setting up libpng16-16:amd64 (1.6.34-1ubuntu0.18.04.1) ...
+Setting up libjbig0:amd64 (2.1-3.1build1) ...
+Setting up fonts-dejavu-core (2.37-1) ...
+Setting up libelf1:amd64 (0.170-0.4) ...
+Setting up nginx-common (1.14.0-0ubuntu1.2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 76.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libjpeg-turbo8:amd64 (1.5.2-0ubuntu5.18.04.1) ...
+Setting up libgeoip1:amd64 (1.6.12-1) ...
+Setting up libbsd0:amd64 (0.8.7-1) ...
+Setting up ucf (3.0038) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 76.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libxml2:amd64 (2.9.4+dfsg1-6.1ubuntu1.2) ...
+Setting up libfreetype6:amd64 (2.8.1-2ubuntu2) ...
+Setting up libxslt1.1:amd64 (1.1.29-5ubuntu0.1) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+Setting up libatm1:amd64 (1:2.5.1-2build1) ...
+Setting up libxtables12:amd64 (1.6.1-2ubuntu2) ...
+Setting up libssl1.1:amd64 (1.1.0g-2ubuntu4.3) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 76.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.26.1 /usr/local/share/perl/5.26.1 /usr/lib/x86_64-linux-gnu/perl5/5.26 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.26 /usr/share/perl/5.26 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libnginx-mod-mail (1.14.0-0ubuntu1.2) ...
+Setting up libnginx-mod-http-xslt-filter (1.14.0-0ubuntu1.2) ...
+Setting up libxdmcp6:amd64 (1:1.1.2-3) ...
+Setting up libmnl0:amd64 (1.0.4-2) ...
+Setting up libnginx-mod-http-geoip (1.14.0-0ubuntu1.2) ...
+Setting up libx11-data (2:1.6.4-3ubuntu0.2) ...
+Setting up libxau6:amd64 (1:1.0.8-1) ...
+Setting up libwebp6:amd64 (0.6.1-2) ...
+Setting up libjpeg8:amd64 (8c-2ubuntu8) ...
+Setting up fontconfig-config (2.12.6-0ubuntu2) ...
+Setting up libnginx-mod-stream (1.14.0-0ubuntu1.2) ...
+Setting up libtiff5:amd64 (4.0.9-5ubuntu0.2) ...
+Setting up iproute2 (4.15.0-2ubuntu1) ...
+Setting up libxcb1:amd64 (1.13-2~ubuntu18.04) ...
+Setting up libfontconfig1:amd64 (2.12.6-0ubuntu2) ...
+Setting up libx11-6:amd64 (2:1.6.4-3ubuntu0.2) ...
+Setting up libxpm4:amd64 (1:3.5.12-1) ...
+Setting up libgd3:amd64 (2.2.5-4ubuntu0.3) ...
+Setting up libnginx-mod-http-image-filter (1.14.0-0ubuntu1.2) ...
+Setting up nginx-core (1.14.0-0ubuntu1.2) ...
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up nginx (1.14.0-0ubuntu1.2) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+root@4e34b9caa35b:/# service nginx status
+ * nginx is not running
+root@4e34b9caa35b:/# service nginx start
+ * Starting nginx nginx                                                                                                                                          [ OK ]
+root@4e34b9caa35b:/# service nginx status
+ * nginx is running
+root@4e34b9caa35b:/# exit
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+4e34b9caa35b        ubuntu              "bash"              7 minutes ago       Up 7 minutes                            adoring_babbage
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              latest              94e814e2efa8        5 weeks ago         88.9MB
+ubuntu              14.10               a8a2ba3ce1a3        3 years ago         194MB
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker commit --help
+
+Usage:  docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
+
+Create a new image from a container's changes
+
+Options:
+  -a, --author string    Author (e.g., "John Hannibal Smith
+                         <hannibal@a-team.com>")
+  -c, --change list      Apply Dockerfile instruction to the created image
+  -m, --message string   Commit message
+  -p, --pause            Pause container during commit (default true)
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker commit 4e34b9caa35b sambaodoo/ubuntu_nginx
+sha256:f0805259589818535face6c9db8fcbd9bb33286b8675aee8e85e6abeb02feb0b
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker images
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+sambaodoo/ubuntu_nginx   latest              f08052595898        5 seconds ago       174MB
+ubuntu                   latest              94e814e2efa8        5 weeks ago         88.9MB
+ubuntu                   14.10               a8a2ba3ce1a3        3 years ago         194MB
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+4e34b9caa35b        ubuntu              "bash"              9 minutes ago       Up 9 minutes                            adoring_babbage
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker container kill 4e34b9caa35b
+4e34b9caa35b
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker images
+REPOSITORY               TAG                 IMAGE ID            CREATED              SIZE
+sambaodoo/ubuntu_nginx   latest              f08052595898        About a minute ago   174MB
+ubuntu                   latest              94e814e2efa8        5 weeks ago          88.9MB
+ubuntu                   14.10               a8a2ba3ce1a3        3 years ago          194MB
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker run -it -d ubuntu
+a42a3ff75b9057e495c572b1e0e372ba8bce184bb53ecd73764424f3e8f00c42
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker run -it -d -p 82:80 sambaodoo/ubuntu_nginx
+16289c83c97e7f07778960c04d21f77d975be31f78dd8b0d70a74f6245fed720
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker ps
+CONTAINER ID        IMAGE                    COMMAND             CREATED             STATUS              PORTS                NAMES
+16289c83c97e        sambaodoo/ubuntu_nginx   "bash"              6 seconds ago       Up 4 seconds        0.0.0.0:82->80/tcp   lucid_robinson
+a42a3ff75b90        ubuntu                   "/bin/bash"         3 minutes ago       Up 3 minutes                             zen_proskuriakova
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker-machine ip
+192.168.99.100
+
+gss@GSSHYD-CP-LT6973 MINGW64 /c/Program Files/Docker Toolbox
+$ docker exec -it 16289c83c97e bash
+root@16289c83c97e:/# service nginx status
+ * nginx is not running
+root@16289c83c97e:/# service nginx start
+ * Starting nginx nginx                                                                                                                                          [ OK ]
+root@16289c83c97e:/#
+
+
+
+

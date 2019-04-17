@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,re_path
 from django.http import HttpResponse
-from app1.views import AirportView
+from app1.views import AirportView, Shorttestpath
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path('airports/(?P<pk>[0-9])/', AirportView.as_view()),
     path('airports/', AirportView.as_view()),
+    path("get_short_path/",Shorttestpath.as_view())
 ]

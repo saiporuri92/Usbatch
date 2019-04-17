@@ -35,7 +35,8 @@ resp=requests.post(url,json={"name":"vijayawada","lat":"234","log":"45678"}
 	)
 print(resp,resp.status_code)
 '''
-url="http://localhost:8000/airports/"
-resp=requests.get(url)
-print(resp.json(),resp.status_code)
+url="http://localhost:8000/get_short_path/"
+resp=requests.get(url, 
+	json={"airports":["begumpet","vizag","shamshabad"],"source":"vizag"})
+print(resp.status_code,resp.json())
 
